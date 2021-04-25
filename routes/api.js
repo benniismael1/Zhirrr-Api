@@ -931,7 +931,7 @@ router.get('/yutub/play', async (req, res, next) => {
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-    if (!q) return res.json({ status : false, creator : `Rey`, message : "masukan parameter q"})
+    if (!q) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter q"})
 
        fetch(encodeURI(`https://videfikri.com/api/ytplayv2/?query=${q}`))
         .then(response => response.json())
@@ -974,7 +974,7 @@ router.get('/jooxnich?search', async (req, res, next) => {
             q = req.query.q
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-    if (!q) return res.json({ status : false, creator : `Rey`, message : "masukan parameter q"})
+    if (!q) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter q"})
 
        fetch(encodeURI(`https://mnazria.herokuapp.com/api/jooxnich?search=${q}`))
         .then(response => response.json())
@@ -1387,7 +1387,7 @@ router.get('/cersex', async (req, res, next) => {
         .then(data => {
         var result = data;
              res.json({
-                author: 'rey',
+                author: 'BYYsayang',
                  result
              })
          })
@@ -1937,7 +1937,7 @@ router.get('/simsimi', async (req, res, next) => {
         .then(data => {
         var result = data;
              res.json({
-                author: 'Rey',
+                author: 'BYYsayang',
                  result
              })
          })
@@ -2946,7 +2946,7 @@ router.get('/yutub/video', async (req, res, next) => {
         .then(data => {
         var result = data;
              res.json({
-             	author: 'rey',
+             	author: 'BYYsayang',
                  result
              })
          })
@@ -2969,7 +2969,7 @@ router.get('/yutub/audio', async (req, res, next) => {
         .then(data => {
         var result = data;
              res.json({
-             	author: 'rey',
+             	author: 'BYYsayang',
                  result
              })
          })
