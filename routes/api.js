@@ -1444,7 +1444,7 @@ router.get('/kuis/tebakbendera', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://raw.githubusercontent.com/reyhangans/Menu-Api/main/tebakbendera.json`))
+       fetch(encodeURI(`https://raw.githubusercontent.com/benniismael1/Menu-Api/main/tebakbendera.json`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -1545,6 +1545,69 @@ router.get('/neonimebatch', async (req, res, next) => {
          	res.json(loghandler.error)
 })
 })
+
+router.get('/husbu', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            q = req.query.q
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/benniismael1/Menu-Api/main/husbu.json}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+
+router.get('/randomanime', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            q = req.query.q
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/benniismael1/Menu-Api/main/randomanime.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+
+router.get('/samehada', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            q = req.query.q
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://samehadaku-api.zhirrr.repl.co`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
 
 router.get('/waifu', async (req, res, next) => {
         var apikeyInput = req.query.apikey
