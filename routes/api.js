@@ -1728,6 +1728,46 @@ router.get('/kpop', async (req, res, next) => {
 })
 })
 
+router.get('/artinama', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=benni`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+
+})
+})
+
+router.get('/artimimpi', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://videfikri.com/api/primbon/artimimpi/?mimpi=ular`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+
+})
+})
+
 
 router.get('/muslim/bacaanshalat', async (req, res, next) => {
         var apikeyInput = req.query.apikey
