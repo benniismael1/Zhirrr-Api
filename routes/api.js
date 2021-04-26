@@ -1728,37 +1728,53 @@ router.get('/kpop', async (req, res, next) => {
 })
 })
 
-router.get('/artinama', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-        kata = req.query.kata
+router.get('/cekjodoh', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+            nama = req.query.nama,
+	    pasangan = req.query.pasangan;
 
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!kata) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter kata"})
+try {
+  if(!apikeyInput) return res.json(loghandler.notparam)
+  if(apikeyInput !== 'beniismael') return res.sendFile(invalidKey)
+  if (!nama) return res.json(loghandler.notnama)
+  if (!pasangan) return res.json({ message : `Masukan nama pacarmu,, ehh pasangan :v` })
 
-       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=benni`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
+ request.get({
+        headers: {'content-type' : 'application/x-www-form-urlencoded'},
+        url: 'http://www.primbon.com/kecocokan_nama_pasangan.php?nama1=' + nama + '&nama2='+ pasangan +'&proses=+Submit%21+',
+
+    }, function(error, response, body){
+        let $ = cheerio.load(body);
+      var y = $.html().split('<b>KECOCOKAN JODOH BERDASARKAN NAMA PASANGAN</b><br><br>')[1];
+        var t = y.split('.<br><br>')[1];
+        var f = y.replace(t ," ");
+        var x = f.replace(/<br\s*[\/]?>/gi, "\n");
+        var h  = x.replace(/<[^>]*>?/gm, '');
+        var d = h.replace("&amp;", '&')
+
+var result = `Kecocokan Berdasarkan Nama :\n\n${d}`
+         res.json({
+	        status : true,
+                creator : `${creator}`,
+                result : result
              })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
+   })
 
-})
+} catch (e) {
+     console.log(e)
+	res.sendFile(error)
+   }
 })
 
 router.get('/artimimpi', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-        kata = req.query.kata
+        mimpi = req.query.mimpi
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!kata) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter kata"})
+        if (!mimpi) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter mimpi mu"})
 
-       fetch(encodeURI(`https://videfikri.com/api/primbon/artimimpi/?mimpi=ular`))
+       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=Fikri`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -1772,12 +1788,13 @@ router.get('/artimimpi', async (req, res, next) => {
 })
 })
 
-router.get('/cekjodoh', async (req, res, next) => {
+router.get('/artinama', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-        kata = req.query.kata
+        nama = req.query.nama;
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+        if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namamu"})
 
        fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/cekjodoh?apikey=alpin1&nama=beniismael&pasangan=byy`))
         .then(response => response.json())
