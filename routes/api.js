@@ -1574,7 +1574,7 @@ router.get('/randomanime', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://raw.githubusercontent.com/benniismael1/Menu-Api/main/randomanime.json`))
+       fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/anime/random`))
         .then(response => response.json())
         .then(data => {
         var result = data;
