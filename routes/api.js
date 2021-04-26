@@ -1730,9 +1730,11 @@ router.get('/kpop', async (req, res, next) => {
 
 router.get('/artinama', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            
+        kata = req.query.kata
+
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+        if (!kata) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter kata"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=benni`))
         .then(response => response.json())
@@ -1750,9 +1752,11 @@ router.get('/artinama', async (req, res, next) => {
 
 router.get('/artimimpi', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            
+        kata = req.query.kata
+
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+        if (!kata) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter kata"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/artimimpi/?mimpi=ular`))
         .then(response => response.json())
@@ -1770,7 +1774,8 @@ router.get('/artimimpi', async (req, res, next) => {
 
 router.get('/cekjodoh', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            
+        kata = req.query.kata
+
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
 
