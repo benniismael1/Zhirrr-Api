@@ -1768,6 +1768,46 @@ router.get('/artimimpi', async (req, res, next) => {
 })
 })
 
+router.get('/cekjodoh', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/cekjodoh?apikey=alpin1&nama=beniismael&pasangan=byy`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+
+})
+})
+
+router.get('/tgljadian', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://videfikri.com/api/primbon/tgljadian/?tgl=30&bln=06&thn=2019`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+
+})
+})
+
 
 router.get('/muslim/bacaanshalat', async (req, res, next) => {
         var apikeyInput = req.query.apikey
