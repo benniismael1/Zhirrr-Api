@@ -1548,7 +1548,7 @@ router.get('/neonimebatch', async (req, res, next) => {
 
 router.get('/husbu', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            q = req.query.q
+            husbu = req.query.husbu
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
@@ -1569,7 +1569,7 @@ router.get('/husbu', async (req, res, next) => {
 
 router.get('/randomanime', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            q = req.query.q
+            randomanime = req.query.randomanime
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
@@ -1690,9 +1690,11 @@ router.get('/nekonime', async (req, res, next) => {
 
 router.get('/asupan', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            
+            asupan = req.qeury.asupan
+
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+        if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
        fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/asupan?apikey=alpin1`))
         .then(response => response.json())
@@ -1710,9 +1712,11 @@ router.get('/asupan', async (req, res, next) => {
 
 router.get('/kpop', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            
+            kpop = req.query.kpop
+
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+     if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
        fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/kpop/random?apikey=alpin`))
         .then(response => response.json())
@@ -1728,53 +1732,37 @@ router.get('/kpop', async (req, res, next) => {
 })
 })
 
-router.get('/cekjodoh', async (req, res, next) => {
+router.get('/artinama', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
-            nama = req.query.nama,
-	    pasangan = req.query.pasangan;
+            nama = req.query.nama
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'reyanjay') return res.json(loghandler.invalidKey)
+    if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
-try {
-  if(!apikeyInput) return res.json(loghandler.notparam)
-  if(apikeyInput !== 'beniismael') return res.sendFile(invalidKey)
-  if (!nama) return res.json(loghandler.notnama)
-  if (!pasangan) return res.json({ message : `Masukan nama pacarmu,, ehh pasangan :v` })
-
- request.get({
-        headers: {'content-type' : 'application/x-www-form-urlencoded'},
-        url: 'http://www.primbon.com/kecocokan_nama_pasangan.php?nama1=' + nama + '&nama2='+ pasangan +'&proses=+Submit%21+',
-
-    }, function(error, response, body){
-        let $ = cheerio.load(body);
-      var y = $.html().split('<b>KECOCOKAN JODOH BERDASARKAN NAMA PASANGAN</b><br><br>')[1];
-        var t = y.split('.<br><br>')[1];
-        var f = y.replace(t ," ");
-        var x = f.replace(/<br\s*[\/]?>/gi, "\n");
-        var h  = x.replace(/<[^>]*>?/gm, '');
-        var d = h.replace("&amp;", '&')
-
-var result = `Kecocokan Berdasarkan Nama :\n\n${d}`
-         res.json({
-	        status : true,
-                creator : `${creator}`,
-                result : result
+       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=${nama}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
              })
-   })
-
-} catch (e) {
-     console.log(e)
-	res.sendFile(error)
-   }
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
 })
 
-router.get('/artimimpi', async (req, res, next) => {
+router.get('/cekjodoh', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-        mimpi = req.query.mimpi
+        nama = req.query.nama
+        Pasangan = req.query.pasangan
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!url) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter url"})
+        if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
-       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=Fikri`))
+       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=${nama}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -1794,9 +1782,9 @@ router.get('/artinama', async (req, res, next) => {
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter namamu"})
+     if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
-       fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/cekjodoh?apikey=alpin1&nama=beniismael&pasangan=byy`))
+       fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/cekjodoh?apikey=alpin1&nama=${nama}&pasangan=${pasangan}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -1810,13 +1798,17 @@ router.get('/artinama', async (req, res, next) => {
 })
 })
 
-router.get('/tgljadian', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
+router.get('/tanggaljadian', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+            tgl = req.query.tgl
+            bln = req.query.bln
+            thn = req.query.thn
+
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+    if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
-       fetch(encodeURI(`https://videfikri.com/api/primbon/tgljadian/?tgl=30&bln=06&thn=2019`))
+       fetch(encodeURI(`https://videfikri.com/api/primbon/tgljadian/?tgl=${tgl}&bln=${bln}&thn=${thn}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -1826,7 +1818,6 @@ router.get('/tgljadian', async (req, res, next) => {
          })
          .catch(e => {
          	res.json(loghandler.error)
-
 })
 })
 
