@@ -1762,7 +1762,7 @@ router.get('/cekjodoh', async (req, res, next) => {
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
         if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
-       fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=${nama}`))
+       fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/cekjodoh?apikey=alpin1&nama=${nama}&pasangan=${pasangan}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
