@@ -1552,6 +1552,7 @@ router.get('/husbu', async (req, res, next) => {
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+        if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
        fetch(encodeURI(`https://raw.githubusercontent.com/benniismael1/Menu-Api/main/husbu.json}`))
         .then(response => response.json())
@@ -1690,11 +1691,11 @@ router.get('/nekonime', async (req, res, next) => {
 
 router.get('/asupan', async (req, res, next) => {
         var apikeyInput = req.query.apikey
-            asupan = req.qeury.asupan
+            q = req.qeury.q
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
+        if (!q) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter q"})
 
        fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/asupan?apikey=alpin1`))
         .then(response => response.json())
