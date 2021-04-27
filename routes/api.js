@@ -1717,7 +1717,7 @@ router.get('/kpop', async (req, res, next) => {
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-     if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
+     if (!kpop) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kpop"})
 
        fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/kpop/random?apikey=alpin`))
         .then(response => response.json())
