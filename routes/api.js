@@ -40,7 +40,7 @@ loghandler = {
         creator: `${creator}`,
         code: 406,
         message: 'masukan parameter apikey',
-        getApikey: 'chat gw kalo Lo mau apikeynya sob wa.me/6281246460730 , gratis kok ini'
+        getApikey: 'chat gw kalo Lo mau apikeynya sob wa.me/6282114499086 , gratis kok ini'
     },
     notkey: {
         status: false,
@@ -1739,7 +1739,7 @@ router.get('/artinama', async (req, res, next) => {
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-    if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
+    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=${nama}`))
         .then(response => response.json())
