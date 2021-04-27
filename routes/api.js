@@ -1737,10 +1737,33 @@ router.get('/artinama', async (req, res, next) => {
             nama = req.query.nama
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'reyanjay') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
     if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=${nama}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/tanggaljadian', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+            tgl = req.query.tgl
+            bln = req.query.bln
+            thn = req.query.thn
+
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
+    if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
+
+       fetch(encodeURI(`https://videfikri.com/api/primbon/tgljadian/?tgl=${tgl}&bln=${bln}&thn=${thn}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -1795,29 +1818,6 @@ router.get('/artinama', async (req, res, next) => {
          .catch(e => {
          	res.json(loghandler.error)
 
-})
-})
-
-router.get('/tanggaljadian', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            tgl = req.query.tgl
-            bln = req.query.bln
-            thn = req.query.thn
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-    if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
-
-       fetch(encodeURI(`https://videfikri.com/api/primbon/tgljadian/?tgl=${tgl}&bln=${bln}&thn=${thn}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
 })
 })
 
