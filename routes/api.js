@@ -1772,7 +1772,7 @@ router.get('/artimimpi', async (req, res, next) => {
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!mimpi) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter mimpi mu"})
+        if (!url) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter url"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=Fikri`))
         .then(response => response.json())
