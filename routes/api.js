@@ -1739,7 +1739,7 @@ router.get('/artinama', async (req, res, next) => {
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-    if (!nama) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nama"})
+    if (!nama) return res.json({ status : false, creator : `BYYsayang`, message : "masukan parameter nama"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/artinama/?nama=${nama}`))
         .then(response => response.json())
@@ -1762,7 +1762,7 @@ router.get('/tanggaljadian', async (req, res, next) => {
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-    if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
+    if (!tanggaljadian) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter tanggaljadian"})
 
        fetch(encodeURI(`https://videfikri.com/api/primbon/tgljadian/?tgl=${tgl}&bln=${bln}&thn=${thn}`))
         .then(response => response.json())
@@ -1784,7 +1784,7 @@ router.get('/cekjodoh', async (req, res, next) => {
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'beniismael') return res.json(loghandler.invalidKey)
-        if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
+        if (!pasangan) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter pasangan"})
 
        fetch(encodeURI(`https://alpin-api-2021.herokuapp.com/api/cekjodoh?apikey=alpin1&nama=${nama}&pasangan=${pasangan}`))
         .then(response => response.json())
